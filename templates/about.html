@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>TravelMateAI - About us</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='about.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/Red and Black Grunge Circle Creative Logo3.png') }}" type="image/x-icon">
+</head>
+
+</head>
+
+<body>
+    <nav class="navbars ">
+        <div style="margin-left: 25px;">
+                <div style="display: flex; justify-content: center; align-items: center; text-align: center;">
+                    <img src="{{ url_for('static', filename='images/Red and Black Grunge Circle Creative Logo3.png') }}" alt="logo" width="70" height="70" class="d-inline-block align-text-top">
+                   <h1 style="color: #02367b; margin-left: 10px;" >TravelMate</h1>
+                </div>        
+        </div>
+        <div style="margin-right: 30px;">
+            <a href="{{ url_for('index') }}"  style="font-size: large; text-decoration: none; color: #02367b; cursor: pointer; " > Home</a>
+        </div>
+    </nav>
+
+
+    <div class="aboutmain">
+    <div class="about1">
+
+        <h1>About Us</h1>
+        <p>Our vision is to revolutionize travel planning by leveraging the power of artificial intelligence to provide
+            personalized travel recommendations. We aim to inspire and guide travelers to discover new destinations and
+            experiences tailored to their unique preferences, ensuring every journey is memorable and fulfilling.</p>
+    </div>
+    <div class="about2">
+        <img src="{{ url_for('static', filename='images/aboutpic2.jpg') }}" alt="photo">
+
+        <div class="des">
+            <h2>TravelMateAI</h2>
+            <p>Welcome to TravelMate, your intelligent travel companion! At TravelMate, we believe that every traveler
+                is
+                unique and deserves a personalized travel experience. Our AI-driven app is designed to suggest the best
+                places to visit based on your specific interests, whether you're looking for serene parks, majestic
+                temples,
+                thrilling theme parks, vibrant zoos, or fascinating museums. By analyzing your preferences in terms of
+                activity type, significance, and regional interests, we curate recommendations that align perfectly with
+                your travel style. Additionally, we provide insights on the best times to visit each location, ensuring
+                you
+                make the most of your trips. TravelMate is dedicated to making travel planning effortless and enjoyable,
+                helping you explore the world with confidence and ease. Join us on this journey and let’s make every
+                trip an
+                adventure worth remembering!</p>
+        </div>
+    </div>
+
+    
+</div>
+<div class="about3">
+    <a href="{{ url_for('index') }}"><button class="button" >Home</button></a>
+    <p>Ⓒ Copyrights Reserved to CSE Students</p>
+</div>
+</body>
+
+</html>

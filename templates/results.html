@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>TravelMateAI - Results</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='result.css') }}">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='images/Red and Black Grunge Circle Creative Logo3.png') }}" type="image/x-icon">
+
+        <!-- Bootstrap CSS -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+
+</head>
+</head>
+<body>
+    <nav class="navbars ">
+        <div style="margin-left: 25px;">
+                <div style="display: flex; justify-content: center; align-items: center; text-align: center;">
+                    <img src="{{ url_for('static', filename='images/Red and Black Grunge Circle Creative Logo3.png') }}" alt="logo" width="70" height="70" class="d-inline-block align-text-top">
+                   <h1 style="color: #02367b; margin-left: 10px;" >TravelMate</h1>
+                </div>        
+        </div>
+        <div style="margin-right: 30px;">
+            <a href="{{ url_for('about') }}"  style="font-size: large; text-decoration: none; color: #02367b; cursor: pointer; " > About</a>
+        </div>
+    </nav>
+
+
+    <div class="heading">
+        <h2 style="color: #02367b;">TravelMateAI- Recommendations are:</h2>
+    </div>
+
+
+
+
+
+    <div class="container">
+        {% if results %}
+            <div class="results-container">
+                {% for result in results %}
+                    <div class="result">
+                        <center><h3 style="color: #02367b;"><u>--Result--</u></h3></center>
+                        <p><strong>Name:</strong> <span > {{ result['Name'] }} </span></p>
+                        <p><strong>City:</strong><span> {{ result['City'] }} </span></p>
+                        <p><strong>State:</strong> <span> {{ result['State'] }} </span></p>
+                        <p><strong>Zone:</strong> <span> {{ result['Zone'] }} </span></p>
+                        <p><strong>Type:</strong> <span> {{ result['Type'] }} </span></p>
+                        <p><strong>Significance:</strong> <span> {{ result['Significance'] }} </span></p>
+                        <p><strong>Best Time to Visit:</strong> <span> {{ result['Best Time to visit'] }} </span></p>
+                        <p><strong>Time Needed to Visit:</strong> <span> {{ result['time needed to visit in hrs'] }} </span></p>
+                        <p><strong>Google Review Rating:</strong> <span> {{ result['Google review rating'] }} </span></p>
+                        <p><strong>Entrance Fee:</strong> <span> {{ result['Entrance Fee in INR'] }} </span></p>
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <p>There is no Recommendations right now!
+            </p>
+        {% endif %}
+        
+    </div>
+    <center>
+        <div class="newtons-cradle">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            </div>
+    </center>
+    <center>
+        <div class="foott">
+            <a href="{{ url_for('index') }}"><button class="button">Back</button></a>
+        </div>
+    </center>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       <!-- Bootstrap JS and dependencies -->
+       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+       <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>

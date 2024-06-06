@@ -1,0 +1,179 @@
+ <!DOCTYPE html>
+ <html>
+ <head>
+     <title>TravelMateAI</title>
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+     <link rel="stylesheet" href="/static/index.css">
+     <link rel="shortcut icon" href="{{ url_for('static', filename='images/Red and Black Grunge Circle Creative Logo3.png') }}" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+     <script>
+         document.addEventListener("DOMContentLoaded", function() {
+             const zoneInput = document.getElementById('zone');
+             const typeInput = document.getElementById('type');
+             
+             const zoneOptions = {{ zone_options | tojson }};
+             const typeOptions = {{ type_options | tojson }};
+ 
+             const createDropdown = (input, options) => {
+                 let dropdown = document.createElement('ul');
+                 dropdown.classList.add('dropdown');
+                 dropdown.style.display = 'none';
+                 input.parentNode.appendChild(dropdown);
+ 
+                 input.addEventListener('input', () => {
+                     dropdown.innerHTML = '';
+                     let inputValue = input.value.toLowerCase();
+                     let filteredOptions = options.filter(option => option.toLowerCase().includes(inputValue));
+ 
+                     filteredOptions.forEach(option => {
+                         let item = document.createElement('li');
+                         item.textContent = option;
+                         item.addEventListener('click', () => {
+                             input.value = option;
+                             dropdown.style.display = 'none';
+                         });
+                         dropdown.appendChild(item);
+                     });
+ 
+                     dropdown.style.display = filteredOptions.length ? 'block' : 'none';
+                 });
+ 
+                 input.addEventListener('focus', () => {
+                     dropdown.style.display = dropdown.childNodes.length ? 'block' : 'none';
+                 });
+ 
+                 document.addEventListener('click', (e) => {
+                     if (e.target !== input) {
+                         dropdown.style.display = 'none';
+                     }
+                 });
+             };
+ 
+             createDropdown(zoneInput, zoneOptions);
+             createDropdown(typeInput, typeOptions);
+         });
+     </script>
+     <style>
+         .input-container {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.dropdown {
+    border: 1px solid #ccc;
+    max-height: 100px;
+    overflow-y: auto;
+    position: absolute;
+    background-color: #fff;
+    z-index: 1000;
+    width: 100%; 
+    top: 100%; 
+    left: 0; 
+    box-sizing: border-box;
+}
+
+.dropdown li {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.dropdown li:hover {
+    background-color: #ddd;
+}
+
+input {
+    width: 100%;
+    box-sizing: border-box;
+}
+     </style>
+ </head>
+ <body>
+     <nav class="navbars ">
+        <div style="margin-left: 25px;">
+                <div style="display: flex; justify-content: center; align-items: center; text-align: center;">
+                    <img src="{{ url_for('static', filename='images/Red and Black Grunge Circle Creative Logo3.png') }}" alt="logo" width="70" height="70" class="d-inline-block align-text-top">
+                   <h1 style="color: #02367b; margin-left: 10px;" >TravelMate</h1>
+                </div>        
+        </div>
+        <div style="margin-right: 30px;">
+            <a href="{{ url_for('about') }}" style="font-size: large; text-decoration: none; color: #02367b; cursor: pointer; " >About</a>
+        </div>
+    </nav>
+    
+    <div class="bggg">
+        <div class="con">
+        <center>
+            
+        <div class="contents">
+            <div >
+                <div class="three-body">
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                    <div class="three-body__dot"></div>
+                    </div>
+                <h2 style="text-decoration: underline; color: #02367b; transition: all 0.5s ease-in; font-family: cursive;">Welcome to TravelMate!</h2>
+                
+            <h3>Your Ultimate Travel Companion</h3>
+            <p style="font-size: large; margin-top: 5px;">At TravelMate, we believe that every journey should be an unforgettable adventure. Whether you're planning a weekend getaway, a cross-country road trip, or an international expedition, we're here to help you explore the india with ease and excitement.</p>
+            <center>
+                <a href="#one"><button class="button">
+                    Explore
+                  </button></a>
+            </center>
+            </div>
+        </div> 
+        </center>
+        </div>
+    </div>
+  
+   
+    
+    <div class="main" id="one">
+        <div class="coni">
+            <center>
+                <div class="containers">
+                    <div class="three-body">
+                        <div class="three-body__dot"></div>
+                        <div class="three-body__dot"></div>
+                        <div class="three-body__dot"></div>
+                        </div>
+                    <h2 style="color: #02367b; font-family: cursive; text-decoration: underline;">Search Your Trip!..</h2>
+                    <form action="{{ url_for('recommend') }}" method="post">
+                        <div class="input-container">
+                            <label for="zone">Enter the Zone:</label>
+                            <input type="text" name="zone" id="zone" autocomplete="off" placeholder="North,South etc,." class="inputbox">
+                        </div>
+                        <div class="input-container">
+                            <label for="type">Enter the Type:</label>
+                            <input type="text" name="type" id="type" autocomplete="off" placeholder="Beach, Temple etc,." class="inputbox">
+                        </div>
+                        <center>
+                            <button type="submit" value="Get Recommendations" class="button">Search</button>
+                        </center>
+                        
+                    </form>
+                    {% with messages = get_flashed_messages() %}
+                        {% if messages %}
+                            <ul>
+                                {% for message in messages %}
+                                    <li>{{ message }}</li>
+                                {% endfor %}
+                            </ul>
+                        {% endif %}
+                    {% endwith %}
+                </div>
+            </center>
+        </div>
+    </div>
+
+
+    
+
+
+         <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+ </html>
+ 
